@@ -1,0 +1,26 @@
+{
+	"name": "trigger2",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2024-04-11T17:10:00",
+				"endTime": "2024-04-12T17:10:00",
+				"timeZone": "Central Standard Time",
+				"schedule": {
+					"minutes": [
+						12
+					],
+					"hours": [
+						11
+					]
+				}
+			}
+		}
+	}
+}

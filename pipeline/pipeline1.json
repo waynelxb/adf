@@ -61,6 +61,15 @@
 				]
 			}
 		],
+		"parameters": {
+			"masterconnstring": {
+				"type": "string",
+				"defaultValue": "abc"
+			},
+			"masterpara": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }

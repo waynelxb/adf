@@ -1,0 +1,30 @@
+{
+	"name": "azsql_state",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AZ_SQL_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "StateID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StateCode",
+				"type": "char"
+			},
+			{
+				"name": "StateName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "state"
+		}
+	}
+}

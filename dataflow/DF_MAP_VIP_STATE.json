@@ -1,0 +1,86 @@
+{
+	"name": "DF_MAP_VIP_STATE",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "azsql_vip",
+						"type": "DatasetReference"
+					},
+					"name": "sourceVIP"
+				},
+				{
+					"dataset": {
+						"referenceName": "azsql_state",
+						"type": "DatasetReference"
+					},
+					"name": "sourceState"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "azsql_vipil",
+						"type": "DatasetReference"
+					},
+					"name": "sinkVIPofIL"
+				}
+			],
+			"transformations": [
+				{
+					"name": "joinVIPtoState"
+				},
+				{
+					"name": "filterState"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          ID as integer,",
+				"          Name as string,",
+				"          Address as string,",
+				"          BirthDate as date,",
+				"          City as string,",
+				"          CreatedAt as timestamp,",
+				"          Email as string,",
+				"          Password as string,",
+				"          Source as string,",
+				"          State as string,",
+				"          Zip as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> sourceVIP",
+				"source(output(",
+				"          StateID as integer,",
+				"          StateCode as string,",
+				"          StateName as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> sourceState",
+				"sourceVIP, sourceState join(State == StateCode,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> joinVIPtoState",
+				"joinVIPtoState filter(StateCode==\"IL\") ~> filterState",
+				"filterState sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinkVIPofIL"
+			]
+		}
+	}
+}

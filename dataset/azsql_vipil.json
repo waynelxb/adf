@@ -1,0 +1,16 @@
+{
+	"name": "azsql_vipil",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AZ_SQL_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "vipil"
+		}
+	}
+}

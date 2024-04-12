@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText1",
+	"name": "dlmtxt_customers_source",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
